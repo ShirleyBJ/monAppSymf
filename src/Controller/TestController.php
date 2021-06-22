@@ -80,4 +80,17 @@ class TestController extends AbstractController
         $response = new Response('<h1> Hello ' . $prenom . ' ' . $nom . '</h1><br/><h2>Age = '.$age . '</h2>');
         return $response;
     }
+
+    #[Route('/home/{nom}', name: 'home',)]
+    public function index1(Request $request,$nom): Response{
+        $response = new Response('<h1> Bonjour ' . $nom .  '</h1>');
+        return $response;
+    }
+
+    #[Route('/home/index', name: 'home_index', priority:2)] //par défault, priorité = 0 
+    public function index2(Request $request): Response{
+        $response = new Response('<h1> Salut </h1>');
+        return $response;
+    }
+
 }
