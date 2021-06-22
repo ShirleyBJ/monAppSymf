@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
@@ -89,8 +90,19 @@ class TestController extends AbstractController
 
     #[Route('/home/index', name: 'home_index', priority:2)] //par défault, priorité = 0 
     public function index2(Request $request): Response{
-        $response = new Response('<h1> Salut </h1>');
+        $response = new Response('<h1> Bitch, Please !</h1>');
         return $response;
+    }
+
+    #[Route('/hello1/{nom?}/{prenom?}', name: 'hello1',)]
+    public function helloGirl(Request $request,?string $nom, ?string $prenom): Response{
+        if(isset($nom,$prenom)){
+            $response = new Response('<h1> Hello ' . $prenom . ' ' . $nom . '</h1>');
+        return $response;
+        } else {
+            throw new HttpException(404, 'Cette page ne peut être génerer');
+        }
+        
     }
 
 }
