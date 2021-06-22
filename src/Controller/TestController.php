@@ -90,7 +90,7 @@ class TestController extends AbstractController
 
     #[Route('/home/index', name: 'home_index', priority:2)] //par défault, priorité = 0 
     public function index2(Request $request): Response{
-        $response = new Response('<h1> Bitch, Please !</h1>');
+        $response = new Response('<h1> Bitch, Please ! <br/> Attention, on parle de la plage de sable ici 🏖 🏝! 😁</h1>');
         return $response;
     }
 
@@ -115,6 +115,7 @@ class TestController extends AbstractController
     //Passe les parametre de l'url au fichier twig grâce à render
     #[Route('/paramTwig/{nom}/{prenom}/{age}', name: 'paramTwig')] //par défault, priorité = 0 
     public function paramTwig(Request $request,$nom,$prenom,int $age): Response{
+        echo $_ENV['APP_AUTHOR'];
         return $this->render('test/hello.html.twig',[
             'nom' => $nom,
             'prenom' => $prenom,
