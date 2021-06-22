@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{# utilisation de extends entraine redéfinition des block title et body#}
+{% block title %} Page de bienvenue {% endblock %}
+
+{% block body %}
+<h2>Bienvenue à {{ nom }} {{ prenom }} </h2>
+
+{# Pas besoin de parenthése autour de la condition car accolade déja ouverte
+ # Chaque block doit être fermer avec un end...
+ # Les accolades poucentage font office de (condition)#}
+{% if age >= 18 %} 
+    <h2>Majeur : Passer 18 ans, je suis trop vieille pour ces conneries.</h2>
+{% else %}
+    <h2>Mineur : Profite de la sieste tant que tu le peux encore.</h2>
+{% endif %}
+
+{% endblock %}

@@ -112,4 +112,13 @@ class TestController extends AbstractController
         return new Response($nom);
     }
 
+    //Passe les parametre de l'url au fichier twig grâce à render
+    #[Route('/paramTwig/{nom}/{prenom}/{age}', name: 'paramTwig')] //par défault, priorité = 0 
+    public function paramTwig(Request $request,$nom,$prenom,int $age): Response{
+        return $this->render('test/hello.html.twig',[
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'age' => $age,
+        ]); 
+    }
 }
