@@ -23,10 +23,17 @@ class TestController extends AbstractController
         // $response = new Response('Bienvenue dans Symfony');
         // return $response;
 
+        /**Redirection avec variable de session */
+        // $session = $request->getSession(); //session_start();
+        // $maVariable = $session->set('userName','Shirley');
+        // Redirection vers redirection();
+        // $url=$this->generateUrl('redirection');
+        // return $this->redirect($url);
 
-        $session = $request->getSession(); //session_start();
-        $maVariable = $session->set('userName','Shirley');
-        //Redirection vers redirection();
+        $session = $request->getSession();
+        $session->getFlashBag()->add('info','Premier Message');
+        $session->getFlashBag()->add('info','Deuxiéme Message');
+        // Rediriger vers redirection();
         $url=$this->generateUrl('redirection');
         return $this->redirect($url);
     }
@@ -34,11 +41,21 @@ class TestController extends AbstractController
     /**Redirection -> affichage de la valeur de la variable de session */
     #[Route('/redirection', name: 'redirection')]
     public function redirection(Request $request): Response{
-        //Ne pas oublier de redémarrer la session
+        //Redirection avec variable de session
         $session = $request->getSession();//session_start();
-        $maVariable=$session->get('userName');
+        // $maVariable=$session->get('userName');
+        // $response = new Response($maVariable);
+        // return $response;
 
-        $response = new Response($maVariable);
+
+        //Redirection avec flashbag
+        $test = "";
+        $maVariable=$session->getFlashBag()->get('info');
+        foreach($maVariable as $key => $value){
+            $test .= $key. " - ". $value . "<br/>";
+        }
+
+        $response = new Response($test);
         return $response;
     }
     
