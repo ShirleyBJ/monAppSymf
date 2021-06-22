@@ -61,7 +61,7 @@ class TestController extends AbstractController
     
 
     #[Route('/test2', name: 'test2')]
-    public function hello(Request $request): Response{
+    public function testing(Request $request): Response{
         $param = $request->query->all();
 
         $string = "";
@@ -75,4 +75,9 @@ class TestController extends AbstractController
         return $response;
     }
 
+    #[Route('/hello/{nom}/{prenom}/{age}', name: 'hello', requirements:["nom"=>"[a-z]{2,50}"])]
+    public function hello(Request $request,$nom, $prenom, int $age): Response{
+        $response = new Response('<h1> Hello ' . $prenom . ' ' . $nom . '</h1><br/><h2>Age = '.$age . '</h2>');
+        return $response;
+    }
 }
