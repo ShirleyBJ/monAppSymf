@@ -100,9 +100,16 @@ class TestController extends AbstractController
             $response = new Response('<h1> Hello ' . $prenom . ' ' . $nom . '</h1>');
         return $response;
         } else {
+            // $this->createNotFoundException('Cette page ne peut être génerer.');
             throw new HttpException(404, 'Cette page ne peut être génerer');
         }
         
+    }
+
+    #[Route('/param', name: 'param')] //par défault, priorité = 0 
+    public function paramDefined(Request $request): Response{
+        $nom = $this -> getParameter('nom');
+        return new Response($nom);
     }
 
 }
