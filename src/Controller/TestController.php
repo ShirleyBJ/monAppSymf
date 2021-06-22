@@ -49,13 +49,13 @@ class TestController extends AbstractController
 
 
         //Redirection avec flashbag
-        $test = "";
+        $string = "";
         $maVariable=$session->getFlashBag()->get('info');
         foreach($maVariable as $key => $value){
-            $test .= $key. " - ". $value . "<br/>";
+            $string .= $key. " - ". $value . "<br/>";
         }
 
-        $response = new Response($test);
+        $response = new Response($string);
         return $response;
     }
     
