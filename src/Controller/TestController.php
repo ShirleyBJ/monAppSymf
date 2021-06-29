@@ -18,9 +18,10 @@ class TestController extends AbstractController
         // echo "<pre>";
         // print_r($request->query->all());
         // echo "</pre>";
-        // return $this->render('test/index.html.twig', [
-        //     'controller_name' => 'TestController',
-        // ]);
+
+        return $this->render('test/index.html.twig', [
+            'controller_name' => 'TestController',
+        ]);
         // $response = new Response('Bienvenue dans Symfony');
         // return $response;
 
@@ -31,12 +32,12 @@ class TestController extends AbstractController
         // $url=$this->generateUrl('redirection');
         // return $this->redirect($url);
 
-        $session = $request->getSession();
-        $session->getFlashBag()->add('info','Premier Message');
-        $session->getFlashBag()->add('info','Deuxiéme Message');
-        // Rediriger vers redirection();
-        $url=$this->generateUrl('redirection');
-        return $this->redirect($url);
+        // $session = $request->getSession();
+        // $session->getFlashBag()->add('info','Premier Message');
+        // $session->getFlashBag()->add('info','Deuxiéme Message');
+        // // Rediriger vers redirection();
+        // $url=$this->generateUrl('redirection');
+        // return $this->redirect($url);
     }
 
     /**Redirection -> affichage de la valeur de la variable de session */

@@ -15,10 +15,15 @@
     <h3>Fine, and you? How's life ? </h3>
     <h4>HAKUNA MATATA 🐗 </h4>
 
-    This friendly message is coming from:
+    <a href="{{ path('paramTwig',{
+            'nom' : 'berchel',
+            'prenom' : 'shirley',
+            'age': '24',
+        })}}"> Retour sur la page fun </a>
+    {# This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/monAppSymf/src/Controller/TestController.php'|file_link(0) }}">src/Controller/TestController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/monAppSymf/templates/test/index.html.twig'|file_link(0) }}">templates/test/index.html.twig</a></code></li>
-    </ul>
+    </ul> #}
 </div>
 {% endblock %}

@@ -1,5 +1,19 @@
+body{
+    background-color: beige;
+}
+
+ul{
+    color: darkorange;
+}
+
+li{
+    color: goldenrod;
+    list-style-type :disc;
+}
+
 h1{
-    color: blue;
+    color: seagreen;
+
 }
 
 h2{
@@ -7,5 +21,11 @@ h2{
 }
 
 h3{
-    color:yellow;
+    color:salmon;
 }
+
+p{
+    color: darkcyan;
+}
+
+

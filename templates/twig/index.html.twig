@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TwigController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+
+    <h1>{{nom}}</h1>
+    <h2>{{prenom}}</h2>
+    <h3>Affichage d'un tableau</h3>
+    <ul>
+        <li>{{tableau[0]}}</li>
+        <li>{{tableau[1]}}</li>
+        <li>{{tableau[2]}}</li>
+    </ul>
+
+        {# <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/monAppSymf/src/Controller/TwigController.php'|file_link(0) }}">src/Controller/TwigController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/monAppSymf/templates/twig/index.html.twig'|file_link(0) }}">templates/twig/index.html.twig</a></code></li> #}
+    </ul>
+</div>
+{% endblock %}
