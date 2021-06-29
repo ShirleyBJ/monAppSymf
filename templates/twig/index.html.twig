@@ -12,19 +12,48 @@
     <h1>Hello {{ controller_name }}! ✅</h1>
 
     This friendly message is coming from:
-    <ul>
 
     <h1>{{nom}}</h1>
     <h2>{{prenom}}</h2>
-    <h3>Affichage d'un tableau</h3>
+    <h3>Affichage des valeurs d'un tableau</h3>
     <ul>
         <li>{{tableau[0]}}</li>
         <li>{{tableau[1]}}</li>
         <li>{{tableau[2]}}</li>
+        <li> in : {{ 9 in tableau}}</li>
+        <li> not in : {{ 8 in tableau}}</li> {# si faux pas d'affichage#}
+    </ul>
+    <h3>Affichage d'un objet</h3>
+    <ul>
+        <li> Nom : {{personne.nom}}</li>
+        <li>Prénom : {{personne.prenom}}</li>
+        <li>Concaténation  : {{personne.prenom ~ " " ~ personne.nom }}</li>
+        <li> start with : {{ personne.prenom starts with 'M'}}</li>
     </ul>
 
-        {# <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/monAppSymf/src/Controller/TwigController.php'|file_link(0) }}">src/Controller/TwigController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/monAppSymf/templates/twig/index.html.twig'|file_link(0) }}">templates/twig/index.html.twig</a></code></li> #}
-    </ul>
+    <h3>Déboggage</h3>
+    <p> Objet Personne :{{dump(personne)}}</p>
+    <p> Tableau :{{dump(tableau)}}</p>
+
+    <h3>Déclaration et initialisation d'une variable</h3>
+
+    {% set x = 15 %} {# Initialisation de x - variable globale #}
+    {{ x }}
+
+    {% with %} {# Création variable locale #}
+        {% set xLocale = 25 %}
+        {{xLocale}}
+    {% endwith %}
+
+    <h3>Structure conditionelles</h3>
+    {% if tableau[0] > 0 %}
+        <p>{{tableau[0] }} est positif</p>
+    {% elseif tableau[0] < 0  %}
+        <p>{{tableau[0] }} est négatif</p>
+    {% else %}
+        <p>{{tableau[0] }} est nul</p>
+    {% endif %}
+
+    {# {{xLocale}}  echec - variable local n'est pas visible a l'extérieur de son bloc#}
 </div>
 {% endblock %}

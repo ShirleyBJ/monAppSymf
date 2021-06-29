@@ -5,26 +5,10 @@ namespace App\Entity;
 use App\Repository\PersonneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=PersonneRepository::class)
- */
 class Personne
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
     private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
     private $prenom;
 
     public function getId(): ?int
