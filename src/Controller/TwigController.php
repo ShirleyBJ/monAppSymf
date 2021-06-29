@@ -12,7 +12,7 @@ class TwigController extends AbstractController
     #[Route('/twig', name: 'twig',priority:1)]
     public function index(Request $request): Response
     {
-        $tab = [2,3,9];
+        $tab = [2,3,8];
         //créer un objet de type personne
         $personne = new Personne();//instancie , créer un objet de type personne
         //Initialisation de l'objet personne qui est vide, on lui donne des valeurs
@@ -26,6 +26,7 @@ class TwigController extends AbstractController
             'prenom' => $prenom,
             'tableau' => $tab,
             'personne' => $personne,
+            'noms' => ["d'artagnan","athos","portos","aramis","zeus","poseidon","hadés"],    
         ]);
     }
 }

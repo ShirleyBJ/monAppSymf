@@ -54,6 +54,54 @@
         <p>{{tableau[0] }} est nul</p>
     {% endif %}
 
+    <h4> Exemple 2</h4>
+    {% set msg = "est nul" %}
+    {% if tableau[0] > 0 %}
+        {% set msg = "est positif" %}
+    {% elseif tableau[0] < 0  %}
+        {% set msg = "est négatif" %}
+    {% endif %}
+    <p>{{tableau[0] ~ " " ~ msg }}</p>
+
+    <h3>Structure itératives</h3>
+    <ul> Valeur
+        {% for num in tableau %}
+            <li>{{num}}</li>
+        {% endfor %}
+    </ul>
+    <ul> Clé => valeur
+        {% for key, value in tableau %}
+            <li>{{key ~ " : " ~ value }}</li>
+        {% endfor %}
+    </ul>
+    <ul> Intervalle caractére
+        {% for char in 'a'..'z' %}
+            {% if loop.first %} {# Si 1ere itération#}
+                <li style="color:purple">{{char}}</li>
+            {% elseif loop.last %}
+                <li style="color:plum">{{char}}</li>
+            {% elseif loop.index is even %}
+            <li style="color:salmon">{{char}}</li>
+            {% elseif loop.index is odd %}
+            <li style="color:orange">{{char}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <ul> Intervalle nombre
+        {% for char in 5..9 %}
+            <li>{{char}}</li>
+        {% endfor %}
+    </ul>
+    <ul> Afficher noms qui commence entre a et f
+        {% for nom in noms %}
+            {% if nom matches '/^[a-f].*/' %}
+                <li style = "color : green">{{nom}}</li>
+            {% else %}
+                <li style = "color : red">{{nom}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
     {# {{xLocale}}  echec - variable local n'est pas visible a l'extérieur de son bloc#}
 </div>
 {% endblock %}
