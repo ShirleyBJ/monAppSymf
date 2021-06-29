@@ -3,15 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-            <link rel="stylesheet" href="{{asset('css/app.css')}}">
-        {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+        {% block stylesheets %}
+            {# CSS de base #}
+            <link rel="stylesheet" href="{{asset('css/app.css')}}">
+            {#Ajout de Boostrap pour tous les fichier du l'app#}
+            <link src="{{asset('bootstrap-5.0.2-dist/css/bootstrap.min.css')}}>
         {% endblock %}
     </head>
     <body>
@@ -20,5 +17,9 @@
         {% block body %}{% endblock %}
         
         {% include 'footer.html.twig' %} {# include du footer#}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
     </body>
 </html>

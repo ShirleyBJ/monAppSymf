@@ -26,7 +26,8 @@ class TwigController extends AbstractController
             'prenom' => $prenom,
             'tableau' => $tab,
             'personne' => $personne,
-            'noms' => ["d'artagnan","athos","portos","aramis","zeus","poseidon","hadés"],    
+            'noms' => ["d'artagnan","athos","portos","aramis","zeus","poseidon","hadés"], 
+            "js" => '<script>alert("XSS - Injection de code actif")</script>' ,  
         ]);
     }
 }

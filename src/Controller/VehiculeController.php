@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class VehiculeController extends AbstractController
 {
-    #[Route('/vehicule/index', name: 'vehicule')]
+    #[Route('/vehicule/index', name: 'vehicule_index')]
     public function index(): Response
     {
         //Methode 1 de redirection

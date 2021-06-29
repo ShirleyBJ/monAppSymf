@@ -21,7 +21,7 @@ h2{
 }
 
 h3{
-    color:lightskyblue;
+    color:goldenrod;
 }
 
 h4{
@@ -32,4 +32,7 @@ p{
     color: lightseagreen;
 }
 
+a{
+    color:red;
+}
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TwigController!{% endblock %}
+{% block title %}  {{parent()}} - Hello TwigController!{% endblock %} {# Récupere le title parent (base.html.twig)qu'on ajoute à notre titre actuel -> Welcome -  Hello TwigController #}
 
 {% block body %}
 <style>
@@ -44,6 +44,7 @@
         {% set xLocale = 25 %}
         {{xLocale}}
     {% endwith %}
+    {# {{xLocale}}  echec - variable local n'est pas visible a l'extérieur de son bloc#}
 
     <h3>Structure conditionelles</h3>
     {% if tableau[0] > 0 %}
@@ -79,11 +80,11 @@
             {% if loop.first %} {# Si 1ere itération#}
                 <li style="color:purple">{{char}}</li>
             {% elseif loop.last %}
-                <li style="color:plum">{{char}}</li>
+                <li style="color:silver">{{char}}</li>
             {% elseif loop.index is even %}
-            <li style="color:salmon">{{char}}</li>
+            <li style="color:white">{{char}}</li>
             {% elseif loop.index is odd %}
-            <li style="color:orange">{{char}}</li>
+            <li style="color:cyan">{{char}}</li>
             {% endif %}
         {% endfor %}
     </ul>
@@ -102,6 +103,18 @@
         {% endfor %}
     </ul>
 
-    {# {{xLocale}}  echec - variable local n'est pas visible a l'extérieur de son bloc#}
+    <h3>Exemple avec les chaines de caractere</h3>
+        <p>Nom : {{personne.nom}}</p>
+        <p>Nom et prénom: {{personne.nom | trim | upper ~ " " ~ personne.prenom | trim  | lower | capitalize}} </p>
+    
+    <h3>Sécurité - Faille XSS</h3>
+        JS: {{js}}
+
+    <h3>Création des liens</h3>
+        <a href="{{ path('vehicule_index')}}">Véhicule</a>
+        <a href="{{ path('produit_liste')}}">Liste des produit</a>
+        <a href="{{ path('afficher_produit',{'id':'10'})}}"> Afficher un produit</a>
+        
+
 </div>
 {% endblock %}
