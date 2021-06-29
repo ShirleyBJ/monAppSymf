@@ -8,10 +8,10 @@
             {# CSS de base #}
             <link rel="stylesheet" href="{{asset('css/app.css')}}">
             {#Ajout de Boostrap pour tous les fichier du l'app#}
-            <link src="{{asset('bootstrap-5.0.2-dist/css/bootstrap.min.css')}}>
+            <link rel="stylesheet"  href="{{asset('css/bootstrap.min.css')}}" />
         {% endblock %}
     </head>
-    <body>
+    <body class="container">
         {% include 'header.html.twig' %} {# include du header#}
 
         {% block body %}{% endblock %}

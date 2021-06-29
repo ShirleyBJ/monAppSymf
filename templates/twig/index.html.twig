@@ -80,11 +80,11 @@
             {% if loop.first %} {# Si 1ere itération#}
                 <li style="color:purple">{{char}}</li>
             {% elseif loop.last %}
-                <li style="color:silver">{{char}}</li>
+                <li style="color:pink">{{char}}</li>
             {% elseif loop.index is even %}
-            <li style="color:white">{{char}}</li>
+            <li style="color:red">{{char}}</li>
             {% elseif loop.index is odd %}
-            <li style="color:cyan">{{char}}</li>
+            <li style="color:orange">{{char}}</li>
             {% endif %}
         {% endfor %}
     </ul>
