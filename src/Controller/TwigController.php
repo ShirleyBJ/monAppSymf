@@ -13,6 +13,15 @@ class TwigController extends AbstractController
     public function index(Request $request): Response
     {
         $tab = [2,3,8];
+        $personnes = []; //créer un tableau de personne
+        for ($i=0; $i <= 5; $i++) { 
+            $personne = new Personne();//instancie , créer un objet de type personne
+            //Initialisation de l'objet personne qui est vide, on lui donne des valeurs
+            $personne->setNom("Monroe");
+            $personne->setPrenom("Marylin".$i);
+            $nom = $request->query->get("nom".$i);
+            $personnes[] = $personne; 
+        }
         //créer un objet de type personne
         $personne = new Personne();//instancie , créer un objet de type personne
         //Initialisation de l'objet personne qui est vide, on lui donne des valeurs
@@ -25,9 +34,10 @@ class TwigController extends AbstractController
             'nom' => $nom,
             'prenom' => $prenom,
             'tableau' => $tab,
-            'personne' => $personne,
+            'personne' => $personnes[0],
             'noms' => ["d'artagnan","athos","portos","aramis","zeus","poseidon","hadés"], 
             "js" => '<script>alert("XSS - Injection de code actif")</script>' ,  
+            'personnes' => $personnes,
         ]);
     }
 }

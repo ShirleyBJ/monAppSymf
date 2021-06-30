@@ -5,10 +5,11 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
+            {#Ajout de Boostrap pour tous les fichier du l'app#}
+            <link rel="stylesheet"  href="{{asset('css/bootstrap.css')}}" />
             {# CSS de base #}
             <link rel="stylesheet" href="{{asset('css/app.css')}}">
-            {#Ajout de Boostrap pour tous les fichier du l'app#}
-            <link rel="stylesheet"  href="{{asset('css/bootstrap.min.css')}}" />
+            
         {% endblock %}
     </head>
     <body class="container">
@@ -20,6 +21,8 @@
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
+            <script src="{{asset('js/main.js')}}"></script>
+            <script src="{{asset('js/bootstrap.js')}}"></script>
         {% endblock %}
     </body>
 </html>

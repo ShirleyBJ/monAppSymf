@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(48, 48, 48);
+    background-color: black;
 }
 
 ul{
@@ -34,5 +34,9 @@ p{
 
 a{
     color:red;
+}
+
+th,tr,td{
+    color: whitesmoke;
 }
 

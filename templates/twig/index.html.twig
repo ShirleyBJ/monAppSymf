@@ -114,7 +114,30 @@
         <a href="{{ path('vehicule_index')}}">Véhicule</a>
         <a href="{{ path('produit_liste')}}">Liste des produit</a>
         <a href="{{ path('afficher_produit',{'id':'10'})}}"> Afficher un produit</a>
-        
+
+    <h3>Parcourir tableau </h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in personnes %}
+                <tr> {# ajout d'une ligne #}
+                    <td>{{p.nom}}</td> {# ajout d'une cellule #}
+                    <td>{{p.prenom}}</td> 
+                    <td>
+                        <a href="#" class="btn btn-primary">Afficher</a>
+                        <a href="#" class="btn btn-warning">Modifier</a>
+                        <a href="#" class="btn btn-danger">Supprimer</a>
+                    </td> 
+                </tr>
+            {% endfor %}
+        </tbody>
+    <table>
 
 </div>
 {% endblock %}
