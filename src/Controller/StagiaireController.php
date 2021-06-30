@@ -14,7 +14,7 @@ class StagiaireController extends AbstractController
     public function index(): Response
     {
         //Récupérer le repository pour la lecture - indiquer le nom de la classe dans la méthode getRepository
-        $repo = $this->getDoctrine()->getRepository('Stagiare::class');
+        $repo = $this->getDoctrine()->getRepository(Stagiaire::class);
         $stagiaires = $repo->findAll();//récupere toutes les données de la table (Select * from Table) -retourne une collection
         return $this->render('stagiaire/index.html.twig', [
             'controller_name' => 'Liste des Stagiaires',
