@@ -25,7 +25,7 @@ class StagiaireController extends AbstractController
     #[Route('/creer', name: 'stagiaire_creer', methods : ['GET','POST'])]
     public function creer(): Response
     {
-        $stagiaire = new Stagiaire();
+        $stagiaire = new Stagiaire();//créer un objet de type stagaire  
         $stagiaire->setNom('ANTON MARTIN DE PORRES');
         $stagiaire->setPrenom('Jérôme');
         //récuperer le gestionnaire des entité (Entity Manager)
@@ -37,5 +37,17 @@ class StagiaireController extends AbstractController
         $entityManager->flush();
         //Redirection vers la liste des stagiaire 
         return $this->redirectToRoute("stagiaire_liste");
+    }
+
+    #[Route('/{id<\d+>}', name:'stagiaire_afficher', methods:['GET'])]
+    public function afficherStagiaire(int $id){ //récupére l'identifiant
+        $repo = $this->getDoctrine()->getRepository(Stagiaire::class);
+        $stagiaire = $repo->find($id); //récupére stagiaire
+        if(!$stagiaire){//si stagiaire n'existe pas , on léve une exception
+            throw $this->createNotFoundException("Stagiaire non trouvé !");
+        }
+        $this->render("stagiaire/afficher.html.twig",[
+            "stagiaire"=>$stagiaire,
+        ]);
     }
 }
