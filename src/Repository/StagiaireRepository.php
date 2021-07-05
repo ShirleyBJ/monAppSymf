@@ -19,6 +19,12 @@ class StagiaireRepository extends ServiceEntityRepository
         parent::__construct($registry, Stagiaire::class);
     }
 
+    public function countStagiaire(){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery("SELECT count(s) from App\Entity\Stagiaire s");
+        return $query->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Stagiaire[] Returns an array of Stagiaire objects
     //  */

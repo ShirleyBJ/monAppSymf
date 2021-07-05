@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=StagiaireRepository::class)
  */
 class Stagiaire
-{
+{ 
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -26,6 +26,11 @@ class Stagiaire
      * @ORM\Column(type="string", length=30)
      */
     private $prenom;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Adresse::class, cascade={"persist", "remove"})
+     */
+    private $adresse;
 
     public function getId(): ?int
     {
@@ -52,6 +57,18 @@ class Stagiaire
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
 
         return $this;
     }

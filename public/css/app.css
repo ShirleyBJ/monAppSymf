@@ -4,11 +4,12 @@ body{
 
 ul{
     color: lightcoral;
+    list-style-type :none;
 }
 
 li{
-    color: lightgoldenrodyellow;
-    list-style-type :disc;
+    color: white;
+    list-style-type : none;
 }
 
 h1{

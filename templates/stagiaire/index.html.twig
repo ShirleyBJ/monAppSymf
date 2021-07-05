@@ -3,5 +3,51 @@
 {% block title %} Liste des stagiaires {% endblock %}
 
 {% block body %}
-    {{ dump(stagiaires) }}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in stagiaires %}
+                <tr> {# ajout d'une ligne #}
+                    <td>{{s.id}}</td>
+                    <td>{{s.nom}}</td> {# ajout d'une cellule #}
+                    <td>{{s.prenom}}</td>
+                    <td>{{s.adresse}}</td>
+                    <td>
+                        <a href="{{ path('stagiaire_afficher', { 'id' : s.id }) }}" class="btn btn-primary">Afficher</a>
+                        <a href="#" class="btn btn-warning">Modifier</a>
+                        <a href="#" class="btn btn-danger">Supprimer</a>
+                    </td> 
+                </tr>
+            {% endfor %}
+        </tbody>
+    <table>
+    {# Pagination #}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+        {# Affichage de disabled si numéro de page est inférieur ou égal à 1 #}
+            <li class="page-item {{ pageCourante <= 1 ? 'disabled' : ''}}" style="display: {{ pageCourante <= 1 ? 'none' : 'inline-block'}}">
+                <a class="page-link" href="{{ path('stagiaire_liste_pagination', {'nbPage' :  nbPage, 'page' : pageCourante -1 }) }} " tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+
+            {# Génere le nbr de lien dynamiquement #}
+            {% for page in 1..nbTotalPage %}
+            {# Si on est sur la page courante, on l'a rend visible donc active  #}
+                <li class="page-item {{ pageCourante == page ? 'active' : ''}}">
+                    <a class="page-link" href=" {{ path('stagiaire_liste_pagination', {'nbPage' :  nbPage, 'page' : page }) }} "> {{ page }} </a>
+                </li>
+            {% endfor %} 
+
+            <li class="page-item {{ pageCourante >= nbTotalPage ? 'disabled' : ''}}" style="display: {{ pageCourante >= nbTotalPage ? 'none' : 'inline-block'}}"  >
+                <a class="page-link" href="{{ path('stagiaire_liste_pagination', {'nbPage' :  nbPage, 'page' : pageCourante +1 }) }} ">Next</a>
+            </li>
+        </ul>
+    </nav>
 {% endblock %}
