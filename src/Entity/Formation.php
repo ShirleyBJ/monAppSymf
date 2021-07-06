@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CentreRepository;
+use App\Repository\FormationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CentreRepository::class)
+ * @ORM\Entity(repositoryClass=FormationRepository::class)
  */
-class Centre
+class Formation
 {
     /**
      * @ORM\Id
@@ -22,10 +22,10 @@ class Centre
     /**
      * @ORM\Column(type="string", length=80)
      */
-    private $nom;
+    private $intitule;
 
     /**
-     * @ORM\OneToMany(targetEntity=Stagiaire::class, mappedBy="centre", orphanRemoval=false , cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Stagiaire::class, mappedBy="formations")
      */
     private $stagiaires;
 
@@ -39,14 +39,14 @@ class Centre
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getIntitule(): ?string
     {
-        return $this->nom;
+        return $this->intitule;
     }
 
-    public function setNom(string $nom): self
+    public function setIntitule(string $intitule): self
     {
-        $this->nom = $nom;
+        $this->intitule = $intitule;
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Centre
     {
         if (!$this->stagiaires->contains($stagiaire)) {
             $this->stagiaires[] = $stagiaire;
-            $stagiaire->setCentre($this);
+            $stagiaire->addFormation($this);
         }
 
         return $this;
@@ -72,10 +72,7 @@ class Centre
     public function removeStagiaire(Stagiaire $stagiaire): self
     {
         if ($this->stagiaires->removeElement($stagiaire)) {
-            // set the owning side to null (unless already changed)
-            if ($stagiaire->getCentre() === $this) {
-                $stagiaire->setCentre(null);
-            }
+            $stagiaire->removeFormation($this);
         }
 
         return $this;

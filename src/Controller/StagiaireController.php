@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Adresse;
+use App\Entity\Centre;
 use App\Entity\Stagiaire;
 use App\Repository\StagiaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,8 +34,8 @@ class StagiaireController extends AbstractController
     public function creer(): Response
     {
         $stagiaire = new Stagiaire();//créer un objet de type stagaire  
-        $stagiaire->setNom('Knowles');
-        $stagiaire->setPrenom('Beyoncé');
+        $stagiaire->setNom('Parks');
+        $stagiaire->setPrenom('Rosa');
 
         $adresse = new Adresse();
         $adresse->setAdresse("Avenue des nuages");
@@ -42,12 +43,19 @@ class StagiaireController extends AbstractController
         $adresse->setVille("Olympe-sur-terre");
 
         $stagiaire->setAdresse($adresse);
+
+        //Créer un centre
+        $centre= new Centre();
+        //Donne un nom au Centre
+        $centre->setNom("Agence des Women In Black");
+        $centre->addStagiaire($stagiaire);
         //récuperer le gestionnaire des entité (Entity Manager)
         //on crée une varibable que l'on appelle genéralement $em
         $entityManager = $this->getDoctrine()->getManager();
         //Appel de la méthode persist dans lequel on passe en argument l'objet que l'on souhaite persisté (enregistrer)
         //$entityManager->persist($adresse);
-        $entityManager->persist($stagiaire);
+        //$entityManager->persist($stagiaire);
+        $entityManager->persist($centre);
         //Appel de la méthode flush - exécution d'une requête pour persister toutes nos commandes -> exécuter insert dans BDD (on l'appel une seule fois)
         $entityManager->flush();
         //Redirection vers la liste des stagiaire 
