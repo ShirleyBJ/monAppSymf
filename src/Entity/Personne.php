@@ -5,10 +5,29 @@ namespace App\Entity;
 use App\Repository\PersonneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity(repositoryClass=PersonneRepository::class)
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type",type="string")
+ * @ORM\DiscriminatorMap({ "personne" = "Personne" , "etudiant"= "Etudiant" , "prof" = "Prof"})
+ */
 class Personne
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
     private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
     private $prenom;
 
     public function getId(): ?int

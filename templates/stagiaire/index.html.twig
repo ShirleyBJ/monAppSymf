@@ -10,6 +10,8 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Adresse</th>
+                <th>Formations</th>
+                <th>Centre</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -26,6 +28,20 @@
                         {% else %}
                             -
                         {% endif %}
+                    </td>
+                    <td>
+                        <ul>
+                            {% for formation in s.formations %}
+                                <li>{{formation.intitule}}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            {% if s.centre is not null %}
+                                <li>{{s.centre.nom}}</li>
+                            {% endif%}
+                        </ul>
                     </td>
                     <td>
                         <a href="{{ path('stagiaire_afficher', { 'id' : s.id }) }}" class="btn btn-primary">Afficher</a>

@@ -4,6 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Adresse;
 use App\Entity\Centre;
+use App\Entity\Etudiant;
+use App\Entity\Formation;
+use App\Entity\Personne;
+use App\Entity\Prof;
 use App\Entity\Stagiaire;
 use App\Repository\StagiaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,30 +38,65 @@ class StagiaireController extends AbstractController
     public function creer(): Response
     {
         $stagiaire = new Stagiaire();//créer un objet de type stagaire  
-        $stagiaire->setNom('Parks');
-        $stagiaire->setPrenom('Rosa');
+        $stagiaire->setNom('Jordan');
+        $stagiaire->setPrenom('Michael B.');
 
         $adresse = new Adresse();
-        $adresse->setAdresse("Avenue des nuages");
-        $adresse->setCodepostal("01010");
-        $adresse->setVille("Olympe-sur-terre");
+        $adresse->setAdresse("Forever");
+        $adresse->setCodepostal("00000");
+        $adresse->setVille("Wakanda");
 
         $stagiaire->setAdresse($adresse);
 
         //Créer un centre
         $centre= new Centre();
         //Donne un nom au Centre
-        $centre->setNom("Agence des Women In Black");
+        $centre->setNom("School of life");
         $centre->addStagiaire($stagiaire);
+
+        //créer une formation
+        $formation = new Formation();
+        $formation->setIntitule("Mercenaire");
+
+        $formation2 = new Formation();
+        $formation2->setIntitule("Assasin");
+
+        $stagiaire->addFormation($formation);
+        $stagiaire->addFormation($formation2);
+
+        //créer une personne
+        $personne = new Personne();
+        $personne->setNom("personneNom");
+        $personne->setPrenom("personnePrenom");
+
+        //créer un édtudiant
+        $etudiant = new Etudiant();
+        $etudiant->setNom("etudiantNom");
+        $etudiant->setPrenom("etudiantPrenom");
+        $etudiant->setNiveau("Doctorat");
+
+        //créer un prof
+        $prof = new Prof();
+        $prof->setNom("profNom");
+        $prof->setPrenom("profPrenom");
+        $prof->setSalaire(10000.00);
+
         //récuperer le gestionnaire des entité (Entity Manager)
         //on crée une varibable que l'on appelle genéralement $em
         $entityManager = $this->getDoctrine()->getManager();
+
         //Appel de la méthode persist dans lequel on passe en argument l'objet que l'on souhaite persisté (enregistrer)
         //$entityManager->persist($adresse);
         //$entityManager->persist($stagiaire);
+        $entityManager->persist($formation);
+        $entityManager->persist($formation2);
         $entityManager->persist($centre);
+        $entityManager->persist($personne);
+        $entityManager->persist($etudiant);
+        $entityManager->persist($prof);
         //Appel de la méthode flush - exécution d'une requête pour persister toutes nos commandes -> exécuter insert dans BDD (on l'appel une seule fois)
         $entityManager->flush();
+
         //Redirection vers la liste des stagiaire 
         return $this->redirectToRoute("stagiaire_liste");
     }
