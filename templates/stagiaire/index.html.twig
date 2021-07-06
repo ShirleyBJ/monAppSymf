@@ -19,7 +19,14 @@
                     <td>{{s.id}}</td>
                     <td>{{s.nom}}</td> {# ajout d'une cellule #}
                     <td>{{s.prenom}}</td>
-                    <td>{{s.adresse}}</td>
+                    <td>
+                    {# Si adresse est null #}
+                        {% if s.adresse is not null %}
+                            {{ s.adresse.adresse ~ " , " ~ s.adresse.codePostal ~ " , " ~ s.adresse.ville }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="{{ path('stagiaire_afficher', { 'id' : s.id }) }}" class="btn btn-primary">Afficher</a>
                         <a href="#" class="btn btn-warning">Modifier</a>

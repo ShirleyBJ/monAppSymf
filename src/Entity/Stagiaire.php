@@ -32,6 +32,12 @@ class Stagiaire
      */
     private $adresse;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Centre::class, inversedBy="stagiaires")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $centre;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Stagiaire
     public function setAdresse(?Adresse $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCentre(): ?Centre
+    {
+        return $this->centre;
+    }
+
+    public function setCentre(?Centre $centre): self
+    {
+        $this->centre = $centre;
 
         return $this;
     }
